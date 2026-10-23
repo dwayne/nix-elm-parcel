@@ -1,0 +1,100 @@
+{
+  "nodes": {
+    "flake-deploy": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792427874,
+        "narHash": "sha256-fYgX5qVeP1n3U4a1OAanZEPpq+UzJOBFq5AhJFnjqKg=",
+        "owner": "dwayne",
+        "repo": "deploy",
+        "rev": "4efbd2d94bda57fa4ee5f0a9cfda9cedc1cb721c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dwayne",
+        "repo": "deploy",
+        "type": "github"
+      }
+    },
+    "flake-elm2nix": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792594888,
+        "narHash": "sha256-Qc5ZAJ/HS57H8C806ewICI0jeet0hYrw4FeYHvlmzpU=",
+        "owner": "dwayne",
+        "repo": "elm2nix",
+        "rev": "11783e2126068022d7150b877afc5cb6b99cefd2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dwayne",
+        "ref": "use-elm-0.19.3",
+        "repo": "elm2nix",
+        "type": "github"
+      }
+    },
+    "nix-elm-parcel": {
+      "flake": false,
+      "locked": {
+        "path": "..",
+        "type": "path"
+      },
+      "original": {
+        "path": "..",
+        "type": "path"
+      },
+      "parent": []
+    },
+    "nix-utils": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1792785317,
+        "narHash": "sha256-Gtm+PG/IogkYxB8cY6F0Kqa+QY2McjbNg7KmY6xd1Ms=",
+        "owner": "dwayne",
+        "repo": "nix-utils",
+        "rev": "2f8416bfbdb4436140c8d39cda0cc280a49b771e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "dwayne",
+        "repo": "nix-utils",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1792506237,
+        "narHash": "sha256-Q/8KLB6jNfpaUN1HAedE/u/Et9feE/zYSsutBLKrCFk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "5adc50831c259f87faeb09ddf930d43597197473",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "flake-deploy": "flake-deploy",
+        "flake-elm2nix": "flake-elm2nix",
+        "nix-elm-parcel": "nix-elm-parcel",
+        "nix-utils": "nix-utils",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
