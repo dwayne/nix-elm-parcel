@@ -20,10 +20,16 @@ Check that you can format the Elm files.
 just format
 ```
 
-Check that linting passes.
+Check that the lints pass.
 
 ```bash
 just lint
+```
+
+Check that the tests pass.
+
+```bash
+just test
 ```
 
 Check that you can remove the build artifacts.

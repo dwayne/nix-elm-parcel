@@ -1,3 +1,5 @@
+elm_dirs := "src tests"
+
 [private]
 default:
   @just --list --unsorted
@@ -8,11 +10,15 @@ dev:
 
 # Run elm-format
 format:
-  elm-format src --yes
+  elm-format {{elm_dirs}} --yes
 
 # Run sanity checks
 lint:
-  elm-format src --validate
+  elm-format {{elm_dirs}} --validate
+
+# Run the tests
+test:
+  elm-test
 
 # Remove build artifacts
 clean:
@@ -21,4 +27,5 @@ clean:
 alias d := dev
 alias f := format
 alias l := lint
+alias t := test
 alias c := clean
