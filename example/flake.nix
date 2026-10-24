@@ -35,7 +35,7 @@
         site = project.build {
           name = "example";
           root = ./.;
-          hash = "sha256-Pv1rBuSiT9kCpF6TGNj2iI5Q0hV40GxFfdyRwO/fxc4=";
+          hash = "sha256-jtdcqU+04HjTQACEnxoLTrK0QYkRI290AzUb+vU1VR4=";
         };
       in
       {

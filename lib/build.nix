@@ -10,13 +10,15 @@
 , mkServe
 , nodejs
 , pnpm
+, DEFAULT_PATHS
+, OPTIONAL_PATHS
 }:
 
 lib.makeOverridable (
   { name
   , root
   , hash
-  , defaultPaths ? [ "src" "elm.json" "package.json" "pnpm-lock.yaml" "pnpm-workspace.yaml" ]
+  , defaultPaths ? DEFAULT_PATHS
   , extraPaths ? []
   , elmLockFilename ? "elm.lock"
   , patches ? []
@@ -25,7 +27,15 @@ lib.makeOverridable (
   }:
   let
     fs = lib.fileset;
-    paths = defaultPaths ++ extraPaths;
+
+    toAbsPath = s:
+      let
+        absPath = root + "/${s}";
+      in
+      if builtins.elem s OPTIONAL_PATHS then
+        fs.maybeMissing absPath
+      else
+        absPath;
 
     elmLock = root + "/${elmLockFilename}";
     registryDat = elm2nixLib.generateRegistryDat { inherit elmLock; };
@@ -35,7 +45,7 @@ lib.makeOverridable (
 
     src = fs.toSource {
       inherit root;
-      fileset = fs.unions (builtins.map (path: root + "/${path}") paths);
+      fileset = fs.unions (builtins.map toAbsPath (defaultPaths ++ extraPaths));
     };
 
     # @swc/core >= 1.16.12 unpacks its native addon into a cache and rejects any

@@ -15,4 +15,23 @@ lib.makeScope newScope (self: {
   mkServe = self.callPackage ./mk-serve.nix {};
   nodejs = nodejs-slim_24;
   pnpm = pnpm_12;
+
+  # Constants
+
+  DEFAULT_PATHS =
+    [
+      "public"
+      "src"
+      ".parcelrc"
+      "elm.json"
+      "package.json"
+      "pnpm-lock.yaml"
+      "pnpm-workspace.yaml"
+    ];
+
+  OPTIONAL_PATHS =
+    [
+      "public"
+      ".parcelrc"
+    ];
 })

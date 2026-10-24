@@ -1,0 +1,4 @@
+# Learn more at https://www.robotstxt.org/
+
+User-agent: *
+Disallow: /
