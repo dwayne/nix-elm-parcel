@@ -9,5 +9,5 @@ serve: elm.lock
 deploy: elm.lock
 	nix run .#deploy
 
-elm.lock:
+elm.lock: elm.json
 	elm2nix lock
