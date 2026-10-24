@@ -15,6 +15,7 @@ format:
 # Run sanity checks
 lint:
   elm-format {{elm_dirs}} --validate
+  elm-review
 
 # Run the tests
 test:
