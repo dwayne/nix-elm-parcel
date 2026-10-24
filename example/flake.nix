@@ -15,6 +15,9 @@
 
   outputs = { self, nixpkgs, nix-utils, nix-elm-parcel, flake-elm2nix, flake-deploy }:
     let
+      name = "example";
+      hash = "sha256-jtdcqU+04HjTQACEnxoLTrK0QYkRI290AzUb+vU1VR4=";
+
       lib = nixpkgs.lib;
       nixUtils = import nix-utils lib;
     in
@@ -33,14 +36,13 @@
         };
 
         site = project.build {
-          name = "example";
+          inherit name hash;
           root = ./.;
-          hash = "sha256-jtdcqU+04HjTQACEnxoLTrK0QYkRI290AzUb+vU1VR4=";
         };
       in
       {
         devShells.default = pkgs.mkShell {
-          name = "example";
+          inherit name;
           inputsFrom = [ project.devShell ];
         };
 
