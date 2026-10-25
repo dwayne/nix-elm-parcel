@@ -1,6 +1,6 @@
-.PHONY: site serve deploy
+.PHONY: build serve deploy
 
-site: elm.lock
+build: elm.lock
 	nix build -L
 
 serve: elm.lock

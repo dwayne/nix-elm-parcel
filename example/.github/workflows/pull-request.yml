@@ -1,0 +1,22 @@
+name: Pull request
+
+on:
+  pull_request:
+
+#
+# Cancel a pull request's previous run when you push again.
+# We only care about the latest commit.
+#
+concurrency:
+  group: pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    uses: ./.github/workflows/reusable-checks.yml
+    #
+    # Optional: Run checks on more systems (x86_64-linux always runs)
+    #
+    # with:
+    #   systems: '["aarch64-linux","aarch64-darwin"]'
+    #

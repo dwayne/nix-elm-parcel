@@ -31,6 +31,11 @@
         };
       in
       {
+        devShells.default = pkgs.mkShell {
+          name = "nix-elm-parcel";
+          packages = [ pkgs.actionlint ];
+        };
+
         #
         # Currently only useful for explorations within `nix repl`.
         #
