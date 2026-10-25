@@ -4,7 +4,7 @@
 , mkShell
 
 , deploy
-, elm2nixLib
+, elm2nixPackages
 , nodejs
 , pnpm
 }:
@@ -15,7 +15,7 @@ mkShell {
   packages = [
     actionlint
     deploy
-    elm2nixLib.elm2nix
+    elm2nixPackages.elm2nix
     elmPackages.elm
     elmPackages.elm-format
     elmPackages.elm-json

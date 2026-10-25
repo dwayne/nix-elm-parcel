@@ -4,14 +4,15 @@
 , pnpm_12
 
 , deploy
-, elm2nixLib
+, elm2nixPackages
 }:
 
 lib.makeScope newScope (self: {
-  inherit deploy elm2nixLib;
+  inherit deploy elm2nixPackages;
+
+  devShell = self.callPackage ./dev-shell.nix {};
 
   build = self.callPackage ./build.nix {};
-  devShell = self.callPackage ./dev-shell.nix {};
   mkServe = self.callPackage ./mk-serve.nix {};
   nodejs = nodejs-slim_24;
   pnpm = pnpm_12;

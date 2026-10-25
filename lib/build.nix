@@ -6,7 +6,7 @@
 , writeShellApplication
 
 , deploy
-, elm2nixLib
+, elm2nixPackages
 , mkServe
 , nodejs
 , pnpm
@@ -38,7 +38,7 @@ lib.makeOverridable (
         absPath;
 
     elmLock = root + "/${elmLockFilename}";
-    registryDat = elm2nixLib.generateRegistryDat { inherit elmLock; };
+    registryDat = elm2nixPackages.generateRegistryDat { inherit elmLock; };
   in
   stdenv.mkDerivation (finalAttrs: {
     inherit name;
@@ -71,8 +71,8 @@ lib.makeOverridable (
     buildPhase = ''
       runHook preBuild
 
-      ${elm2nixLib.prepareElmHomeScript { inherit elmLock registryDat; }}
-      ${elm2nixLib.installPatchesScript patches}
+      ${elm2nixPackages.prepareElmHomeScript { inherit elmLock registryDat; }}
+      ${elm2nixPackages.installPatchesScript patches}
 
       pnpm build
 
