@@ -31,7 +31,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      #
-      # TODO: Remove -n when support is added for `main` branch as it is for `master` branch
-      #
-      - run: nix run .#deploy -- -n
+      - run: nix run .#deploy
