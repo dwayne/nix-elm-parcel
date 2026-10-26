@@ -11,7 +11,7 @@ jobs:
     needs: checks
 
     concurrency:
-      group: deploy
+      group: nix-elm-parcel-deploy
       cancel-in-progress: false
 
     permissions:
