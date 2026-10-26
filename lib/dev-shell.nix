@@ -1,12 +1,16 @@
 { actionlint
 , elmPackages
 , just
+, lib
 , mkShell
 
 , deploy
 , elm2nixPackages
 , nodejs
 , pnpm
+
+, runPnpmInstall ? true
+, enableOptionalDefaultMakefile ? true
 }:
 
 mkShell {
@@ -30,8 +34,21 @@ mkShell {
     export PROJECT_ROOT="$PWD"
     export PATH="$PROJECT_ROOT/node_modules/.bin:$PATH"
 
-    if [ ! -d "$PROJECT_ROOT/node_modules" ]; then
-      pnpm install --loglevel warn
-    fi
+    ${lib.optionalString runPnpmInstall ''
+      if [ ! -d "$PROJECT_ROOT/node_modules" ]; then
+        pnpm install --loglevel warn
+      fi
+    ''}
+
+    ${lib.optionalString enableOptionalDefaultMakefile ''
+      export PROJECT_DEFAULT_MAKEFILE="${./Makefile}"
+
+      if [ ! -f "$PROJECT_ROOT/Makefile" ]; then
+        #
+        # Learn more: https://www.gnu.org/software/make/manual/html_node/MAKEFILES-Variable.html
+        #
+        export MAKEFILES="$PROJECT_DEFAULT_MAKEFILE"
+      fi
+    ''}
   '';
 }

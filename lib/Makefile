@@ -1,6 +1,6 @@
 .PHONY: build preview deploy
 
-# Build the site for production into ./result
+# Build the site for production (result by default)
 build: elm.lock
 	nix build -L
 
@@ -8,7 +8,7 @@ build: elm.lock
 preview: elm.lock
 	nix run
 
-# Deploy the production build into the deployBranch (site by default) branch
+# Deploy the production build into the deployBranch branch (site by default)
 deploy: elm.lock
 	nix run .#deploy
 
