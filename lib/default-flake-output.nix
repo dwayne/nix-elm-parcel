@@ -4,16 +4,20 @@
 , devShell
 }:
 
-{ name, ... }@args:
+{ name
+, devShellArgs ? {}
+, ...
+}@args:
 
 let
-  site = build args;
+  buildArgs = builtins.removeAttrs args [ "devShellArgs" ];
+  site = build buildArgs;
 in
 {
-  devShells.default = mkShell {
+  devShells.default = mkShell (devShellArgs // {
     inherit name;
-    inputsFrom = [ devShell ];
-  };
+    inputsFrom = [ devShell ] ++ (devShellArgs.inputsFrom or []);
+  });
 
   packages = {
     inherit site;
