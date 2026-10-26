@@ -1,0 +1,61 @@
+review_dir := if path_exists("review") == "true" { "review" } else { "" }
+tests_dir := if path_exists("tests") == "true" { "tests" } else { "" }
+
+# Directories containing Elm code (review and tests only if they exist),
+# plus any listed in PROJECT_ELM_DIRS_EXTRA
+elm_dirs := "src " + review_dir + " " + tests_dir + " " + env("PROJECT_ELM_DIRS_EXTRA", "")
+
+# Extra paths for `clean` to remove, from PROJECT_CLEAN_EXTRA
+clean_extra := env("PROJECT_CLEAN_EXTRA", "")
+
+[private, default]
+default:
+  @just --list --unsorted
+
+# Start the development server
+dev:
+  pnpm dev
+
+# Format the Elm code in place
+format:
+  elm-format {{elm_dirs}} --yes
+
+# Check the formatting of the Elm code
+check-format:
+  elm-format {{elm_dirs}} --validate
+
+# Review the Elm code
+review:
+  if [ -d review ]; then elm-review; else echo "No review directory, skipping."; fi
+
+# Run the Elm tests
+test:
+  if [ -d tests ]; then elm-test; else echo "No tests directory, skipping."; fi
+
+# Run all the code checks (CI runs this too)
+verify: check-format review test
+
+# Build the site for production into ./result
+build:
+  make build
+
+# Preview the production build locally
+preview:
+  make preview
+
+# Deploy the production build into the deployBranch branch (site by default)
+deploy:
+  make deploy
+
+# Remove build output, caches, and node_modules
+clean:
+  rm -rf .parcel-cache dist elm-stuff node_modules result {{clean_extra}}
+
+alias d := dev
+alias f := format
+alias r := review
+alias t := test
+alias v := verify
+alias b := build
+alias p := preview
+alias c := clean

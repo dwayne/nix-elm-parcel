@@ -11,6 +11,7 @@
 
 , runPnpmInstall ? true
 , enableOptionalDefaultMakefile ? true
+, enableOptionalDefaultJustfile ? true
 }:
 
 mkShell {
@@ -48,6 +49,15 @@ mkShell {
         # Learn more: https://www.gnu.org/software/make/manual/html_node/MAKEFILES-Variable.html
         #
         export MAKEFILES="$PROJECT_DEFAULT_MAKEFILE"
+      fi
+    ''}
+
+    ${lib.optionalString enableOptionalDefaultJustfile ''
+      export PROJECT_DEFAULT_JUSTFILE="${./justfile}"
+
+      if [ -z "$(find "$PROJECT_ROOT" -maxdepth 1 \( -iname justfile -o -iname .justfile \))" ]; then
+        export JUST_JUSTFILE="$PROJECT_DEFAULT_JUSTFILE"
+        export JUST_WORKING_DIRECTORY="$PROJECT_ROOT"
       fi
     ''}
   '';
