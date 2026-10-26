@@ -17,6 +17,8 @@ lib.makeScope newScope (self: {
   nodejs = nodejs-slim_24;
   pnpm = pnpm_12;
 
+  defaultFlakeOutput = self.callPackage ./default-flake-output.nix {};
+
   # Constants
 
   DEFAULT_PATHS =
