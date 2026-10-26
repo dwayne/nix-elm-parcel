@@ -1,14 +1,15 @@
-name: Pull request
+name: Checks
 
 on:
-  pull_request:
+  push:
+    branches-ignore: [master, main]
 
 #
-# Cancel a pull request's previous run when you push again.
+# Cancel a branch's previous run when you push to it again.
 # We only care about the latest commit.
 #
 concurrency:
-  group: pr-${{ github.event.pull_request.number }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
