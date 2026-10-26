@@ -37,4 +37,22 @@ lib.makeScope newScope (self: {
       "public"
       ".parcelrc"
     ];
+
+  #
+  # pnpm settings that every project gets, in the dev shell and in the build.
+  #
+  # pnpm gives environment variables precedence over pnpm-workspace.yaml, so a
+  # project can't override them from its workspace file.
+  #
+  # Learn more: https://pnpm.io/configuring#environment-variables
+  #
+  # Elm comes from Nix, so don't install the elm npm package as a peer of
+  # @parcel/transformer-elm, and don't warn that it's missing.
+  #
+  PNPM_ENV = {
+    PNPM_CONFIG_AUTO_INSTALL_PEERS = "false";
+    PNPM_CONFIG_PEER_DEPENDENCY_RULES = builtins.toJSON {
+      ignoreMissing = [ "elm" ];
+    };
+  };
 })

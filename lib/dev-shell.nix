@@ -8,6 +8,7 @@
 , elm2nixPackages
 , nodejs
 , pnpm
+, PNPM_ENV
 
 , runPnpmInstall ? true
 , enableOptionalDefaultMakefile ? true
@@ -34,6 +35,9 @@ mkShell {
   shellHook = ''
     export PROJECT_ROOT="$PWD"
     export PATH="$PROJECT_ROOT/node_modules/.bin:$PATH"
+
+    ${lib.toShellVars PNPM_ENV}
+    export ${lib.concatStringsSep " " (lib.attrNames PNPM_ENV)}
 
     ${lib.optionalString runPnpmInstall ''
       if [ ! -d "$PROJECT_ROOT/node_modules" ]; then
