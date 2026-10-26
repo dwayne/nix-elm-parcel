@@ -3,10 +3,10 @@ tests_dir := if path_exists("tests") == "true" { "tests" } else { "" }
 
 # Directories containing Elm code (review and tests only if they exist),
 # plus any listed in PROJECT_ELM_DIRS_EXTRA
-elm_dirs := "src " + review_dir + " " + tests_dir + " " + env("PROJECT_ELM_DIRS_EXTRA", "")
+elm_dirs := trim(replace_regex("src " + review_dir + " " + tests_dir + " " + env("PROJECT_ELM_DIRS_EXTRA", ""), '\s+', ' '))
 
-# Extra paths for `clean` to remove, from PROJECT_CLEAN_EXTRA
-clean_extra := env("PROJECT_CLEAN_EXTRA", "")
+# Paths for `clean` to remove, from PROJECT_CLEAN_PATHS_EXTRA
+clean_paths := trim(replace_regex(".parcel-cache dist elm-stuff node_modules result " + env("PROJECT_CLEAN_PATHS_EXTRA", ""), '\s+', ' '))
 
 [private, default]
 default:
@@ -47,9 +47,9 @@ preview:
 deploy:
   make deploy
 
-# Remove build output, caches, and node_modules
+# Remove build artifacts
 clean:
-  rm -rf .parcel-cache dist elm-stuff node_modules result {{clean_extra}}
+  rm -rf {{clean_paths}}
 
 alias d := dev
 alias f := format
