@@ -1,13 +1,17 @@
-.PHONY: build serve deploy
+.PHONY: build preview deploy
 
+# Build the site for production into ./result
 build: elm.lock
 	nix build -L
 
-serve: elm.lock
+# Preview the production build locally
+preview: elm.lock
 	nix run
 
+# Deploy the production build into the deployBranch (site by default) branch
 deploy: elm.lock
 	nix run .#deploy
 
+# Regenerate elm.lock whenever elm.json changes
 elm.lock: elm.json
 	elm2nix lock
