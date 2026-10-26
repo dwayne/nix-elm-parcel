@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   checks:
-    uses: ./.github/workflows/reusable-checks.yml
+    uses: ./.github/workflows/reusable-checks.yaml
     #
     # Optional: Run checks on more systems (x86_64-linux always runs)
     #

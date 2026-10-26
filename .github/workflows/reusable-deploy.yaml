@@ -5,7 +5,7 @@ on:
 
 jobs:
   checks:
-    uses: ./.github/workflows/reusable-checks.yml
+    uses: ./.github/workflows/reusable-checks.yaml
 
   deploy:
     needs: checks

@@ -11,6 +11,6 @@ jobs:
     # Manual dispatch can run from any branch; only deploy from master or main.
     #
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-    uses: ./.github/workflows/reusable-deploy.yml
+    uses: ./.github/workflows/reusable-deploy.yaml
     permissions:
       contents: write
