@@ -23,7 +23,7 @@ lib.makeOverridable (
   , elmLockFilename ? "elm.lock"
   , patches ? []
   , port ? 8000
-  , deployBranch ? "gh-pages"
+  , deployBranch ? "site"
   }:
   let
     fs = lib.fileset;
