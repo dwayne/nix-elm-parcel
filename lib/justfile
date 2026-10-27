@@ -5,6 +5,11 @@ tests_dir := if path_exists("tests") == "true" { "tests" } else { "" }
 # plus any listed in PROJECT_ELM_DIRS_EXTRA
 elm_dirs := trim(replace_regex("src " + review_dir + " " + tests_dir + " " + env("PROJECT_ELM_DIRS_EXTRA", ""), '\s+', ' '))
 
+# The name of the executable to use to run your Elm tests
+#
+# For e.g. you might want to use elm-test-rs instead.
+elm_test_runner := env("PROJECT_ELM_TEST_RUNNER", "elm-test")
+
 # Paths for `clean` to remove, from PROJECT_CLEAN_PATHS_EXTRA
 clean_paths := trim(replace_regex(".parcel-cache dist elm-stuff node_modules result " + env("PROJECT_CLEAN_PATHS_EXTRA", ""), '\s+', ' '))
 
@@ -44,7 +49,7 @@ lint: check-format review actionlint
 
 # Run the Elm tests
 test:
-  if [ -d tests ]; then elm-test; else echo "No tests directory, skipping."; fi
+  if [ -d tests ]; then {{elm_test_runner}}; else echo "No tests directory, skipping."; fi
 
 # Run all the code checks (CI runs this too)
 verify: lint test
