@@ -66,5 +66,14 @@
           nixElmParcelPackages = final.callPackage ./lib {};
         })
       ];
+
+      templates = {
+        default = self.templates.minimal;
+
+        minimal = {
+          description = "The bare minimum required for an Elm web application";
+          patch = ./templates/minimal;
+        };
+      };
     };
 }
