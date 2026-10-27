@@ -10,7 +10,7 @@ elm_dirs := trim(replace_regex("src " + review_dir + " " + tests_dir + " " + env
 # For e.g. you might want to use elm-test-rs instead.
 elm_test_runner := env("PROJECT_ELM_TEST_RUNNER", "elm-test")
 
-# Paths for `clean` to remove, from PROJECT_CLEAN_PATHS_EXTRA
+# Paths for `clean` to remove, plus any listed in PROJECT_CLEAN_PATHS_EXTRA
 clean_paths := trim(replace_regex(".parcel-cache dist elm-stuff node_modules result " + env("PROJECT_CLEAN_PATHS_EXTRA", ""), '\s+', ' '))
 
 [private, default]
