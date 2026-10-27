@@ -72,7 +72,7 @@
 
         minimal = {
           description = "The bare minimum required for an Elm web application";
-          patch = ./templates/minimal;
+          path = ./templates/minimal;
         };
       };
     };
