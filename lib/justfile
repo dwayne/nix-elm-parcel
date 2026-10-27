@@ -33,6 +33,13 @@ check-format:
 review:
   if [ -d review ]; then elm-review; else echo "No review directory, skipping."; fi
 
+# Run the Elm tests
+test:
+  if [ -d tests ]; then {{elm_test_runner}}; else echo "No tests directory, skipping."; fi
+
+# Run all Elm code checks
+elm-lint: check-format review test
+
 # Lint GitHub Actions workflow files
 actionlint:
   #!/usr/bin/env bash
@@ -47,23 +54,19 @@ actionlint:
 # Run all the sanity checks
 lint: check-format review actionlint
 
-# Run the Elm tests
-test:
-  if [ -d tests ]; then {{elm_test_runner}}; else echo "No tests directory, skipping."; fi
-
-# Run all the code checks (CI runs this too)
+# Run all the sanity checks and tests (CI runs this too)
 verify: lint test
 
 # Build the site for production into ./result
-build:
+build: elm-lint
   make build
 
 # Preview the production build locally
-preview:
+preview: elm-lint
   make preview
 
 # Deploy the production build into the deployBranch branch (site by default)
-deploy:
+deploy: elm-lint
   make deploy
 
 # Remove build artifacts
