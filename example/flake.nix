@@ -26,7 +26,7 @@
       pkgs.nixElmParcelPackages.defaultFlakeOutput {
         name = "example";
         root = ./.;
-        hash = "sha256-c1evKKWUS+PTMgSowmBm6lNaVOKOYNLpkZuLQu5Ol7w=";
+        hash = "sha256-Iw+oY4nDXVkvjfhrThW/UCtuttP69vZSsPkhnCbEwms=";
       }
     );
 }
