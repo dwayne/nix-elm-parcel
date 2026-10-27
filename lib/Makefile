@@ -12,6 +12,9 @@ preview: elm.lock
 deploy: elm.lock
 	nix run .#deploy
 
+# The elm.json files to lock
+PROJECT_ELM_JSON_FILES ?= elm.json
+
 # Regenerate elm.lock whenever elm.json changes
-elm.lock: elm.json
-	elm2nix lock
+elm.lock: $(PROJECT_ELM_JSON_FILES)
+	elm2nix lock $(PROJECT_ELM_JSON_FILES)
