@@ -1,6 +1,6 @@
 # Example
 
-A simple example to sanity check the nix-elm-parcel Nix library.
+A simple example to sanity check the **nix-elm-parcel** Nix library.
 
 ## Things to check
 
@@ -41,15 +41,15 @@ just clean
 Check that you can build the site.
 
 ```bash
-make site
+just build
 ```
 
 Inspect the site's files in the `result` directory.
 
-Check that you can serve the site.
+Preview the site.
 
 ```bash
-make serve
+just preview
 ```
 
 Visit http://localhost:8000 in your browser.
