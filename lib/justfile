@@ -28,12 +28,26 @@ check-format:
 review:
   if [ -d review ]; then elm-review; else echo "No review directory, skipping."; fi
 
+# Lint GitHub Actions workflow files
+actionlint:
+  #!/usr/bin/env bash
+  shopt -s nullglob
+  files=(.github/workflows/*.{yaml,yml})
+  if [ ${#files[@]} -gt 0 ]; then
+    actionlint -verbose "${files[@]}"
+  else
+    echo "No GitHub Actions workflow files, skipping."
+  fi
+
+# Run all the sanity checks
+lint: check-format review actionlint
+
 # Run the Elm tests
 test:
   if [ -d tests ]; then elm-test; else echo "No tests directory, skipping."; fi
 
 # Run all the code checks (CI runs this too)
-verify: check-format review test
+verify: lint test
 
 # Build the site for production into ./result
 build:
@@ -54,6 +68,7 @@ clean:
 alias d := dev
 alias f := format
 alias r := review
+alias l := lint
 alias t := test
 alias v := verify
 alias b := build
