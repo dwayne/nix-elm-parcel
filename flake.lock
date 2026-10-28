@@ -33,11 +33,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793195101,
-        "narHash": "sha256-7/gQ3YYmBd8WwwMTL3sabwrKu4i+PIJptq3546bWOmw=",
+        "lastModified": 1793209125,
+        "narHash": "sha256-e6CIpdj/9xA/43EKuxI1oUi5+bc4s6hBhClb+y/Og1A=",
         "owner": "dwayne",
         "repo": "elm2nix",
-        "rev": "f6a6238e899da5b6baf4b52a48eb2abc3e10cab5",
+        "rev": "986f9c02da5e73038dddaa2dda35f2283898fdd4",
         "type": "github"
       },
       "original": {
