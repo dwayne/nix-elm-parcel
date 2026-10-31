@@ -63,11 +63,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1793209472,
-        "narHash": "sha256-pbbwjQbSrZ8YUdgAO2RlWfQsOHmk6JvEPFgbiV/iDBk=",
+        "lastModified": 1793469170,
+        "narHash": "sha256-wOZM8wJ5ir/0xJ1bK4IM7RWD577aI+ws3KKufuOC+G0=",
         "owner": "dwayne",
         "repo": "nix-elm-parcel",
-        "rev": "445cf5af745d4a49652bf5ed0c9a7334286471d9",
+        "rev": "f490b00ca77885f2a3ff30b33436d6a606bac8e8",
         "type": "github"
       },
       "original": {
