@@ -46,13 +46,7 @@ lib.makeScope newScope (self: {
   #
   # Learn more: https://pnpm.io/configuring#environment-variables
   #
-  # Elm comes from Nix, so don't install the elm npm package as a peer of
-  # @parcel/transformer-elm, and don't warn that it's missing.
-  #
   PNPM_ENV = {
-    PNPM_CONFIG_AUTO_INSTALL_PEERS = "false";
-    PNPM_CONFIG_PEER_DEPENDENCY_RULES = builtins.toJSON {
-      ignoreMissing = [ "elm" ];
-    };
+    PNPM_CONFIG_GLOBAL_PNPMFILE = "${./pnpmfile.mjs}";
   };
 })
